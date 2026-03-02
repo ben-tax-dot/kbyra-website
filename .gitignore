@@ -62,3 +62,4 @@ temp/
 # Vercel / deployments (optional)
 # =========================
 .vercel
+.claude/
