@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import CountUp from "@/components/ui/CountUp";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 import { caseStudies } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -27,34 +28,43 @@ export default function CaseStudiesPage() {
         <div className="pointer-events-none absolute right-0 bottom-0 h-64 w-64 rounded-full bg-sky-500/10 blur-[90px]" />
 
         <div className="container-pad relative">
-          <ScrollReveal>
-            <div className="max-w-3xl">
-              <div className="text-xs tracking-[0.22em] text-white/50">CASE STUDIES</div>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                Proof through{" "}
-                <span className="gradient-text">outcomes.</span>
-              </h1>
-              <p className="mt-5 max-w-2xl text-white/65 leading-relaxed md:text-lg">
-                Real work: AI copilots, Zero Trust, cloud optimization, and premium product experiences.
-                Every engagement results in measurable, documented outcomes.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <div className="mt-10 grid grid-cols-3 gap-4 max-w-sm">
-              {[
-                { n: "3+", label: "Case studies" },
-                { n: "100%", label: "On-time delivery" },
-                { n: "24h", label: "Response SLA" },
-              ].map(({ n, label }) => (
-                <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
-                  <div className="text-2xl font-bold gradient-text-static">{n}</div>
-                  <div className="mt-1 text-xs text-white/50">{label}</div>
+          <div className="grid gap-12 lg:grid-cols-[1fr,400px] items-center">
+            <div>
+              <ScrollReveal>
+                <div>
+                  <div className="text-xs tracking-[0.22em] text-white/50">CASE STUDIES</div>
+                  <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+                    Proof through{" "}
+                    <span className="gradient-text">outcomes.</span>
+                  </h1>
+                  <p className="mt-5 text-white/65 leading-relaxed md:text-lg">
+                    Real work: AI copilots, Zero Trust, cloud optimization, and premium product experiences.
+                    Every engagement results in measurable, documented outcomes.
+                  </p>
                 </div>
-              ))}
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.1}>
+                <div className="mt-8 grid grid-cols-3 gap-4 max-w-sm">
+                  {[
+                    { n: "3+", label: "Case studies" },
+                    { n: "100%", label: "On-time delivery" },
+                    { n: "24h", label: "Response SLA" },
+                  ].map(({ n, label }) => (
+                    <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+                      <div className="text-2xl font-bold gradient-text-static">{n}</div>
+                      <div className="mt-1 text-xs text-white/50">{label}</div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+
+            {/* Parallax image */}
+            <div className="hidden lg:block">
+              <ParallaxImage variant="cyber" className="aspect-[4/3]" />
+            </div>
+          </div>
         </div>
       </div>
 

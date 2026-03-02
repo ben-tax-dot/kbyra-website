@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 import { brand, contact } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -28,29 +29,38 @@ export default function ContactPage() {
         <div className="pointer-events-none absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-sky-500/10 blur-[90px]" />
 
         <div className="container-pad relative">
-          <ScrollReveal>
-            <div className="max-w-3xl">
-              <div className="text-xs tracking-[0.22em] text-white/50">CONTACT</div>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                Let&apos;s build{" "}
-                <span className="gradient-text">something great.</span>
-              </h1>
-              <p className="mt-5 max-w-xl text-white/65 leading-relaxed md:text-lg">
-                {contact.subtext}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <div className="mt-10 flex flex-wrap gap-3">
-              {["No commitment required", "Reply within 24 hours", "NDA available", "Free consultation"].map((item) => (
-                <div key={item} className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60">
-                  <span className="h-1 w-1 rounded-full bg-emerald-400" />
-                  {item}
+          <div className="grid gap-12 lg:grid-cols-[1fr,360px] items-center">
+            <div>
+              <ScrollReveal>
+                <div>
+                  <div className="text-xs tracking-[0.22em] text-white/50">CONTACT</div>
+                  <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+                    Let&apos;s build{" "}
+                    <span className="gradient-text">something great.</span>
+                  </h1>
+                  <p className="mt-5 text-white/65 leading-relaxed md:text-lg">
+                    {contact.subtext}
+                  </p>
                 </div>
-              ))}
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.1}>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {["No commitment required", "Reply within 24 hours", "NDA available", "Free consultation"].map((item) => (
+                    <div key={item} className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/60">
+                      <span className="h-1 w-1 rounded-full bg-emerald-400" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+
+            {/* Parallax image */}
+            <div className="hidden lg:block">
+              <ParallaxImage variant="ai" className="aspect-square" />
+            </div>
+          </div>
         </div>
       </div>
 

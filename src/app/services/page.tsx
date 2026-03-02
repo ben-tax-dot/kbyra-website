@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 import { services } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -35,29 +36,37 @@ export default function ServicesPage() {
         <div className="pointer-events-none absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-sky-500/10 blur-[90px]" />
 
         <div className="container-pad relative">
-          <ScrollReveal>
-            <div className="max-w-3xl">
-              <div className="text-xs tracking-[0.22em] text-white/50">SERVICES</div>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                Everything you need to{" "}
-                <span className="gradient-text">ship premium tech.</span>
-              </h1>
-              <p className="mt-5 max-w-2xl text-white/65 leading-relaxed md:text-lg">
-                We build websites, cloud platforms, AI systems, and security foundations. Each engagement
-                includes delivery planning, clean implementation, and a full handoff package.
-              </p>
+          <div className="grid gap-12 lg:grid-cols-[1fr,400px] items-center">
+            <div>
+              <ScrollReveal>
+                <div>
+                  <div className="text-xs tracking-[0.22em] text-white/50">SERVICES</div>
+                  <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+                    Everything you need to{" "}
+                    <span className="gradient-text">ship premium tech.</span>
+                  </h1>
+                  <p className="mt-5 text-white/65 leading-relaxed md:text-lg">
+                    We build websites, cloud platforms, AI systems, and security foundations. Each engagement
+                    includes delivery planning, clean implementation, and a full handoff package.
+                  </p>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={0.1}>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {["AI Solutions", "Cybersecurity", "Cloud & DevOps", "Data Engineering", "Web Dev", "Brand & Digital"].map((tag) => (
+                    <span key={tag} className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/60">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
-            <div className="mt-10 flex flex-wrap gap-3">
-              {["AI Solutions", "Cybersecurity", "Cloud & DevOps", "Data Engineering", "Web Dev", "Brand & Digital"].map((tag) => (
-                <span key={tag} className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/60">
-                  {tag}
-                </span>
-              ))}
+            {/* Parallax image — hidden on small screens */}
+            <div className="hidden lg:block">
+              <ParallaxImage variant="ai" className="aspect-[4/3]" />
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </div>
 

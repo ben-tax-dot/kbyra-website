@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 import { about, brand } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -34,31 +35,40 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute right-1/4 bottom-0 h-64 w-64 rounded-full bg-sky-500/8 blur-[90px]" />
 
         <div className="container-pad relative">
-          <ScrollReveal>
-            <div className="max-w-3xl">
-              <div className="text-xs tracking-[0.22em] text-white/50">ABOUT</div>
-              <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                Premium tech delivery,{" "}
-                <span className="gradient-text">engineered.</span>
-              </h1>
-              <p className="mt-5 max-w-2xl text-white/65 leading-relaxed md:text-lg">
-                {about.story}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* Stat pillars */}
-          <ScrollReveal delay={0.12}>
-            <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {pillars.map(({ icon, label, sub }) => (
-                <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center">
-                  <div className="text-2xl font-bold">{icon}</div>
-                  <div className="mt-2 font-semibold text-white/90">{label}</div>
-                  <div className="mt-0.5 text-xs text-white/50">{sub}</div>
+          <div className="grid gap-12 lg:grid-cols-[1fr,400px] items-center">
+            <div>
+              <ScrollReveal>
+                <div>
+                  <div className="text-xs tracking-[0.22em] text-white/50">ABOUT</div>
+                  <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+                    Premium tech delivery,{" "}
+                    <span className="gradient-text">engineered.</span>
+                  </h1>
+                  <p className="mt-5 text-white/65 leading-relaxed md:text-lg">
+                    {about.story}
+                  </p>
                 </div>
-              ))}
+              </ScrollReveal>
+
+              {/* Stat pillars */}
+              <ScrollReveal delay={0.12}>
+                <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                  {pillars.map(({ icon, label, sub }) => (
+                    <div key={label} className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center">
+                      <div className="text-2xl font-bold">{icon}</div>
+                      <div className="mt-2 font-semibold text-white/90">{label}</div>
+                      <div className="mt-0.5 text-xs text-white/50">{sub}</div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+
+            {/* Parallax image */}
+            <div className="hidden lg:block">
+              <ParallaxImage variant="team" className="aspect-[4/3]" />
+            </div>
+          </div>
         </div>
       </div>
 
