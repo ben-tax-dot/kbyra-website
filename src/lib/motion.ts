@@ -13,7 +13,7 @@ export const MOTION = {
   reveal: {
     distance:  24,       // px   — how far items travel up on enter  (try 16–48)
     duration:  0.5,      // s    — animation duration                (try 0.3–0.8)
-    blur:       6,       // px   — starting blur, fades to 0         (0 = off)
+    blur:       0,       // px   — starting blur, fades to 0         (0 = off)
     stagger:   0.06,     // s    — per-item delay in a list          (try 0.03–0.12)
     ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
   },

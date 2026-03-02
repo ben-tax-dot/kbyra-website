@@ -34,14 +34,14 @@ export default function ScrollReveal({
       initial={
         reduced
           ? { opacity: 0 }
-          : { opacity: 0, y: distance, filter: `blur(${MOTION.reveal.blur}px)` }
+          : { opacity: 0, y: distance }
       }
       whileInView={
         reduced
           ? { opacity: 1 }
-          : { opacity: 1, y: 0, filter: "blur(0px)" }
+          : { opacity: 1, y: 0 }
       }
-      viewport={{ once: true, margin: "-8%" }}
+      viewport={{ once: true, amount: 0.08 }}
       transition={{
         duration: reduced ? 0.15 : duration,
         ease:     MOTION.reveal.ease,
