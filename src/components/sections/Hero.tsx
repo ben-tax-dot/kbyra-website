@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import HeroScene from "@/components/three/HeroScene";
+import MagneticButton from "@/components/ui/MagneticButton";
 import { hero } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -27,6 +28,27 @@ export default function Hero() {
       <div className="pointer-events-none absolute left-1/4 top-1/3 h-96 w-96 rounded-full bg-violet-600/12 blur-[120px] animate-float" />
       <div className="pointer-events-none absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-sky-500/10 blur-[100px] animate-float-slow" />
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink-500/8 blur-[140px]" />
+
+      {/* Floating particles */}
+      {!reduced && (
+        <>
+          <div className="pointer-events-none absolute animate-drift" style={{ top: "22%", left: "12%", "--drift-dur": "9s", "--drift-delay": "0s" } as React.CSSProperties}>
+            <div className="h-1.5 w-1.5 rounded-full bg-violet-400/50" />
+          </div>
+          <div className="pointer-events-none absolute animate-drift" style={{ top: "55%", left: "8%", "--drift-dur": "13s", "--drift-delay": "1.5s" } as React.CSSProperties}>
+            <div className="h-1 w-1 rounded-full bg-sky-400/40" />
+          </div>
+          <div className="pointer-events-none absolute animate-drift" style={{ top: "35%", right: "10%", "--drift-dur": "11s", "--drift-delay": "3s" } as React.CSSProperties}>
+            <div className="h-2 w-2 rounded-full bg-pink-400/35" />
+          </div>
+          <div className="pointer-events-none absolute animate-drift" style={{ top: "70%", right: "18%", "--drift-dur": "15s", "--drift-delay": "0.8s" } as React.CSSProperties}>
+            <div className="h-1 w-1 rounded-full bg-violet-300/45" />
+          </div>
+          <div className="pointer-events-none absolute animate-drift" style={{ top: "15%", right: "35%", "--drift-dur": "10s", "--drift-delay": "4s" } as React.CSSProperties}>
+            <div className="h-1.5 w-1.5 rounded-full bg-sky-300/30" />
+          </div>
+        </>
+      )}
 
       <div className="container-pad relative w-full py-20 md:py-28">
         <div className="grid items-center gap-14 lg:grid-cols-2">
@@ -56,20 +78,22 @@ export default function Hero() {
 
             {/* CTA buttons */}
             <div className="animate-fade-up animate-fade-up-3 mt-8 flex flex-wrap gap-3">
-              {/* Primary — white pill */}
-              <motion.div
-                whileHover={reduced ? {} : { y: MOTION.button.hoverY, scale: 1.01 }}
-                whileTap={reduced   ? {} : { scale: MOTION.button.pressScale }}
-                transition={spring}
-              >
-                <Link
-                  href={hero.primaryCta.href}
-                  className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black"
+              {/* Primary — white pill with magnetic pull */}
+              <MagneticButton strength={0.4}>
+                <motion.div
+                  whileHover={reduced ? {} : { y: MOTION.button.hoverY, scale: 1.01 }}
+                  whileTap={reduced   ? {} : { scale: MOTION.button.pressScale }}
+                  transition={spring}
                 >
-                  {hero.primaryCta.label}
-                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                </Link>
-              </motion.div>
+                  <Link
+                    href={hero.primaryCta.href}
+                    className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black"
+                  >
+                    {hero.primaryCta.label}
+                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </Link>
+                </motion.div>
+              </MagneticButton>
 
               {/* Secondary — glass pill */}
               <motion.div

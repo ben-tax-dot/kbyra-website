@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import CountUp from "@/components/ui/CountUp";
+import ScrambleText from "@/components/ui/ScrambleText";
 import { caseStudies } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -26,7 +27,7 @@ export default function CaseStudiesPreview() {
         <ScrollReveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="text-xs tracking-[0.22em] text-white/50">CASE STUDIES</div>
+              <div className="text-xs text-white/50"><ScrambleText text="CASE STUDIES" delay={0.1} /></div>
               <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
                 Outcomes you can{" "}
                 <span className="gradient-text-static">measure.</span>
@@ -50,12 +51,22 @@ export default function CaseStudiesPreview() {
           </div>
         </ScrollReveal>
 
-        {/* Cards */}
+        {/* Cards — bento layout: first card spans 2 cols on md+ */}
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {caseStudies.map((c, idx) => (
-            <ScrollReveal key={c.title} delay={idx * MOTION.reveal.stagger}>
+            <ScrollReveal
+              key={c.title}
+              delay={idx * MOTION.reveal.stagger}
+              className={idx === 0 ? "md:col-span-2" : ""}
+            >
               <motion.div
-                className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 shine-hover"
+                className="group spotlight-card relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 shine-hover"
+                onMouseMove={(e) => {
+                  const el = e.currentTarget;
+                  const r = el.getBoundingClientRect();
+                  el.style.setProperty("--spot-x", `${e.clientX - r.left}px`);
+                  el.style.setProperty("--spot-y", `${e.clientY - r.top}px`);
+                }}
                 whileHover={
                   reduced ? {} : {
                     y:           MOTION.card.hoverY,

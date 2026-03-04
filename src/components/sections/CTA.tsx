@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import MagneticButton from "@/components/ui/MagneticButton";
+import TextReveal from "@/components/ui/TextReveal";
+import ScrambleText from "@/components/ui/ScrambleText";
 import { brand } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -19,7 +22,7 @@ export default function CTA() {
   return (
     <section className="relative overflow-hidden py-20">
       <div className="container-pad">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 p-10 glow">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 p-10 glow border-glow-pulse">
           {/* Background layers */}
           <div className="absolute inset-0 gradient-bg opacity-80" />
           <div className="absolute inset-0 dot-grid opacity-40" />
@@ -33,9 +36,11 @@ export default function CTA() {
             {/* Left */}
             <div className="md:col-span-7">
               <ScrollReveal>
-                <div className="text-xs tracking-[0.22em] text-white/50">GET STARTED</div>
+                <div className="text-xs text-white/50"><ScrambleText text="GET STARTED" delay={0.2} /></div>
                 <h3 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-                  Ready to build{" "}
+                  <TextReveal delay={0.1} stagger={0.08} el="span" className="block">
+                    Ready to build
+                  </TextReveal>
                   <span className="gradient-text">something premium?</span>
                 </h3>
                 <p className="mt-4 max-w-xl text-white/65 leading-relaxed">
@@ -46,20 +51,22 @@ export default function CTA() {
 
               <ScrollReveal delay={0.1}>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {/* Primary CTA */}
-                  <motion.div
-                    whileHover={reduced ? {} : { y: MOTION.button.hoverY, scale: 1.01 }}
-                    whileTap={reduced   ? {} : { scale: MOTION.button.pressScale }}
-                    transition={spring}
-                  >
-                    <Link
-                      href="/contact"
-                      className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black"
+                  {/* Primary CTA — magnetic pull toward cursor */}
+                  <MagneticButton strength={0.4}>
+                    <motion.div
+                      whileHover={reduced ? {} : { y: MOTION.button.hoverY, scale: 1.01 }}
+                      whileTap={reduced   ? {} : { scale: MOTION.button.pressScale }}
+                      transition={spring}
                     >
-                      Book a Free Call
-                      <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                    </Link>
-                  </motion.div>
+                      <Link
+                        href="/contact"
+                        className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black"
+                      >
+                        Book a Free Call
+                        <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                      </Link>
+                    </motion.div>
+                  </MagneticButton>
 
                   {/* Secondary CTA */}
                   <motion.div

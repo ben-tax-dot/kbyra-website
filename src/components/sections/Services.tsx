@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import ScrambleText from "@/components/ui/ScrambleText";
 import { services } from "@/content/site";
 import { MOTION } from "@/lib/motion";
 
@@ -36,7 +37,7 @@ export default function Services() {
         <ScrollReveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="text-xs tracking-[0.22em] text-white/50">SERVICES</div>
+              <div className="text-xs text-white/50"><ScrambleText text="SERVICES" delay={0.1} /></div>
               <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
                 Deep capability.{" "}
                 <span className="gradient-text-static">Premium execution.</span>
@@ -71,7 +72,13 @@ export default function Services() {
             return (
               <ScrollReveal key={s.slug} delay={idx * MOTION.reveal.stagger}>
                 <motion.div
-                  className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shine-hover"
+                  className="group spotlight-card relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shine-hover"
+                  onMouseMove={(e) => {
+                    const el = e.currentTarget;
+                    const r = el.getBoundingClientRect();
+                    el.style.setProperty("--spot-x", `${e.clientX - r.left}px`);
+                    el.style.setProperty("--spot-y", `${e.clientY - r.top}px`);
+                  }}
                   whileHover={
                     reduced ? {} : {
                       y:         MOTION.card.hoverY,
